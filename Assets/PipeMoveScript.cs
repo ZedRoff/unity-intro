@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PipeMoveScript : MonoBehaviour
 {
-    public float pipeSpeed = 2;
+    public float pipeSpeed = 5;
     int deadzone = -26;
+    public LogicScript logicScript;
   
     // Start is called before the first frame update
     void Start()
     {
-        
+        logicScript = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+
     }
 
     // Update is called once per frame
@@ -22,6 +24,7 @@ public class PipeMoveScript : MonoBehaviour
             Debug.Log("Pipe destroyed");
             Destroy(gameObject);
         }
-        transform.position += Vector3.left * pipeSpeed * Time.deltaTime;
+
+        if(logicScript.status == 1) transform.position += Vector3.left * pipeSpeed * Time.deltaTime;
     }
 }

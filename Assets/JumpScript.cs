@@ -8,12 +8,15 @@ public class JumpScript : MonoBehaviour
 
     public float flapStrength = 50;
     public LogicScript logicScript;
-    public bool isActive;
+
+   
     // Start is called before the first frame update
     void Start()
     {
         logicScript = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
-        isActive = true;
+       
+        rigidBody.isKinematic = true;
+        
 
     }
 
@@ -21,15 +24,18 @@ public class JumpScript : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.Space) == true && isActive)
+        if(logicScript.status == 0)
         {
+            transform.position = new Vector3(0, 0, 0);
+                
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Space) == true && logicScript.status == 1)
+        {
+            rigidBody.isKinematic = false;
             rigidBody.velocity = Vector2.up * flapStrength;
         }
        
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        isActive = false;
-        logicScript.GameOver();
-    }
+   
 }

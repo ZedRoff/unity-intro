@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PipeMediumScript : MonoBehaviour
+public class PipeColisionScript : MonoBehaviour
 {
-
     public LogicScript logicScript;
     // Start is called before the first frame update
     void Start()
@@ -18,8 +17,9 @@ public class PipeMediumScript : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        logicScript.AddScore(1);
+        logicScript.SetStatus(2);
+        logicScript.GameOver();
     }
 }

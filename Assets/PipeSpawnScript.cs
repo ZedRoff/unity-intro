@@ -18,9 +18,6 @@ public class PipeSpawnScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        Debug.Log(timer);
-        Debug.Log(spawnDelay);
         if (timer < spawnDelay)
         {
             timer += Time.deltaTime;
